@@ -1,0 +1,15 @@
+__init__()
+
+process_mask(painting)
+
+inpaint_image_with_path(init_image_path, prompt)
+
+inpaint_image(init_image, prompt)
+
+save_images(inpainted_image, mask_image, clear_mask)
+
+get_mask(Painting)
+
+save_image_grid(images, rows, cols, output_path)
+
+from InpaintingModel import StableDiffusionInpainting

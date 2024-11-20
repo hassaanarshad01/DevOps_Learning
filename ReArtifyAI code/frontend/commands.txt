@@ -1,0 +1,31 @@
+docker build -t username/image_name .
+docker push username/image_name
+
+Kubectl apply -f x.yaml
+
+kubectl get svc -n my_project
+kubectl get pods -n my_project
+
+kubectl rollout restart deployment *image_name* -n my-project
+
+kubectl port-forward svc/*service_name* -n my_project 8080:80
+
+
+kubectl delete pod flask-api-test -n my-project
+
+kubectl delete service <service-name> -n my-project
+
+
+
+HELM:
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+helm create frontend-test
+helm install frontend-helm ./frontend-test
+helm upgrade frontend-helm ./frontend-test
+kubectl get all
+kubectl port-forward service/frontend-helm-frontend-test 8080:3000
+
+helm uninstall frontend-test
+
+
+

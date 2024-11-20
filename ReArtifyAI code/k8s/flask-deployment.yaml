@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-api-test
+  namespace: my-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-api-test
+  template:
+    metadata:
+      labels:
+        app: flask-api-test
+    spec:
+      containers:
+        - name: flask-api-test
+          image: hitmanrodent47/flask-api-test:latest
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10

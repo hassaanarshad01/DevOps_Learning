@@ -1,0 +1,20 @@
+#Flask API Dockerfile
+FROM python:3.10.14-slim
+
+WORKDIR /app
+
+#Using cross-array syntax for cross-OS compatibility
+COPY ["model_api.py", "requirements.txt", "./"]
+
+#Copy other directories
+COPY ["models", "./models"]
+COPY ["temp", "./temp"]
+COPY ["_Images", "./_Images"]
+
+#install while saving space with no-cache-dir (does not cache installed packages)
+RUN pip install --no-cache-dir -r requirements.txt
+
+#Exposing port 5000 for flask API, while the other uses 3000
+EXPOSE 5000
+
+CMD ["python", "model_api.py"]

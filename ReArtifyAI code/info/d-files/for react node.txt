@@ -1,0 +1,18 @@
+#Frontend Dockerfile
+FROM node:20.15.0
+
+#Set the working directory
+WORKDIR /app
+
+#copying dependency lists and installing
+COPY ["package.json", "package-lock.json", "./"]
+
+RUN npm install
+
+#Copy only necessary project folders to keep image light, node-modules is unncessary
+COPY ["public", "src", "backups", "./"]
+
+#Expose port 3000 for the frontend, while flask will use 5000
+EXPOSE 3000
+
+CMD ["npm", "start"]
